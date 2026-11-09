@@ -1,19 +1,36 @@
 import { defineConfig } from 'vite';
 
-// Configuración de Vite. "base: './'" permite publicar en Netlify o abrir la carpeta dist desde cualquier ruta.
+// Configuración de Vite para Fronteras Jurídicas.
 export default defineConfig({
+  // Permite publicar en Netlify y utilizar rutas relativas.
   base: './',
+
   build: {
+    // Mantiene el límite de advertencia original.
     chunkSizeWarningLimit: 1600,
-    rollupOptions: {
+
+    // Configuración compatible con Vite 8 y Rolldown.
+    rolldownOptions: {
       output: {
-        // Phaser y Supabase se separan para que la pantalla inicial cargue rápido.
-        manualChunks: {
-          phaser: ['phaser'],
-          supabase: ['@supabase/supabase-js']
-        }
-      }
-    }
+        codeSplitting: {
+          groups: [
+            {
+              name: 'phaser',
+              test: /node_modules[\\/]phaser[\\/]/,
+            },
+            {
+              name: 'supabase',
+              test: /node_modules[\\/]@supabase[\\/]supabase-js[\\/]/,
+            },
+          ],
+        },
+      },
+    },
   },
-  server: { host: true, port: 5173 }
+
+  // Conserva la configuración del servidor local.
+  server: {
+    host: true,
+    port: 5173,
+  },
 });
