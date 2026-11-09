@@ -1,0 +1,140 @@
+/* ─────────── Actividades de los niveles (pantalla fija) ─────────── */
+.tema-camara { background: linear-gradient(160deg, #2a2418 0%, #1b1710 100%); --acento: #d9a441; }
+.tema-estacion { background: linear-gradient(165deg, #0d3b4f 0%, #12546a 100%); --acento: #8fe0ff; }
+.tema-mesa { background: linear-gradient(165deg, #3b1f1a 0%, #5a2d22 100%); --acento: #f0b36a; }
+.tema-mision { background: repeating-linear-gradient(135deg, #26323d 0 18px, #232d37 18px 36px); --acento: #e0b53a; }
+
+.reto__fijo { width: 100%; max-width: 560px; height: 100%; min-height: 0; margin: 0 auto; display: flex; flex-direction: column; gap: var(--u); }
+.reto__titulo { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.reto__titulo h2 { color: var(--acento); }
+.reto__corto { flex: none; opacity: .92; font-size: .95rem; line-height: 1.3; }
+.reto__area { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; }
+.ng-mini { flex: none; width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--acento, var(--laton)); background: transparent; color: var(--papel); font-size: 1.05rem; cursor: pointer; }
+.etapas { flex: none; display: flex; flex-direction: column; gap: 4px; }
+.etapas__txt { font-size: .8rem; font-weight: 700; opacity: .9; }
+.etapas__barras { display: flex; gap: 4px; }
+.etapas__barras i { flex: 1; height: 6px; border-radius: 3px; background: rgba(255,255,255,.2); }
+.etapas__barras i.hecha { background: var(--ok); }
+.etapas__barras i.actual { background: var(--acento); }
+
+/* Asignación por tarjetas */
+.as { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: var(--u); }
+.as-izq, .as-der { display: contents; }
+.as-chips { flex: none; display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+.as-chip { width: clamp(34px, 5.6vh, 42px); height: clamp(34px, 5.6vh, 42px); border-radius: 50%; border: 2px solid rgba(255,255,255,.4); background: transparent; color: var(--papel); font-weight: 800; cursor: pointer; }
+.as-chip--hecho { background: var(--mar); border-color: var(--mar); color: #10202e; }
+.as-chip--actual { outline: 3px solid var(--acento); outline-offset: 2px; }
+.as-carta { flex: 1 1 0; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: center; gap: 6px; background: var(--papel); color: var(--tinta); border-radius: 12px; padding: 10px 14px; }
+.as-etiqueta { font-weight: 700; opacity: .7; }
+.as-texto { font-size: clamp(1rem, 2.6vh, 1.2rem); line-height: 1.35; font-weight: 600; }
+.as-cats { flex: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 130px), 1fr)); gap: 8px; }
+.as-cat { min-height: var(--btn); padding: 6px 8px; border-radius: 10px; border: 2px solid var(--acento); background: rgba(255,255,255,.08); color: var(--papel); font: 700 .92rem/1.2 system-ui, sans-serif; cursor: pointer; }
+.as-cat:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.as-cat--on { background: var(--acento); color: #10202e; }
+.as-cat:disabled, .as-chip:disabled { cursor: default; }
+.as-confirmar { flex: none; }
+@media (max-height: 520px) and (min-aspect-ratio: 1/1) {
+  /* Apaisado: tarjeta y números a la izquierda, categorías a la derecha, confirmar abajo a todo el ancho */
+  .as { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto minmax(0, 1fr) auto; column-gap: 14px; row-gap: 6px; }
+  .as-izq, .as-der { display: contents; }
+  .as-chips { grid-column: 1; grid-row: 1; }
+  .as-carta { grid-column: 1; grid-row: 2; }
+  .as-cats { grid-column: 2; grid-row: 1 / span 2; align-content: start; }
+  .as-confirmar { grid-column: 1 / -1; grid-row: 3; }
+}
+@media (max-height: 400px) and (min-aspect-ratio: 1/1) {
+  /* Pantallas muy bajas: el texto corto y las etapas quedan disponibles en ℹ y en la barra superior */
+  .ng-mini { width: 40px; height: 40px; }
+  .as-cats { gap: 4px; }
+  .as-cat { padding: 3px 6px; line-height: 1.15; font-size: .9rem; min-height: 40px; }
+  .reto__corto, .etapas { display: none; }
+  .as-etiqueta { display: none; }
+  .res__chips { gap: 4px; }
+}
+
+/* Mapa de estaciones y descubrimiento (nivel 2) */
+.hub, .dc { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: var(--u); }
+.hub__tile { flex: 1 1 0; min-height: 0; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; text-align: left; padding: 8px 14px; border-radius: 14px; border: 2px solid var(--acento); background: rgba(255,255,255,.1); color: var(--papel); cursor: pointer; font-family: system-ui, sans-serif; }
+.hub__icono { font-size: clamp(1.6rem, 5vh, 2.4rem); }
+.hub__texto { display: flex; flex-direction: column; min-width: 0; }
+.hub__texto small { opacity: .85; }
+.hub__estado { font-weight: 800; font-size: .8rem; color: var(--acento); }
+.hub__tile--hecha { opacity: .7; border-color: var(--ok); cursor: default; }
+.dc-carta { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px; padding: 8px; border-radius: 14px; border: 2px solid var(--acento); background: rgba(255,255,255,.1); color: var(--papel); cursor: pointer; font-family: system-ui, sans-serif; font-size: 1rem; }
+.dc-carta small { opacity: .85; }
+.dc-carta--leida { border-color: var(--ok); background: rgba(46,158,91,.2); }
+.dc-texto { font-size: 1.05rem; line-height: 1.5; }
+@media (max-height: 520px) and (min-aspect-ratio: 1/1) {
+  .hub { flex-direction: row; }
+  .hub__tile { grid-template-columns: 1fr; text-align: center; justify-items: center; align-content: center; }
+  .dc { flex-direction: row; }
+}
+
+/* Negociación */
+.ng { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: var(--u); }
+.ng-izq { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; gap: var(--u); }
+.ng-der { flex: none; display: flex; flex-direction: column; gap: var(--u); }
+.ng-top { flex: none; display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,.25); border-radius: 12px; padding: 6px 8px; }
+.ng-retrato small { display: none; }
+.ng-cara { font-size: 1.5rem; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; background: var(--papel); flex: none; }
+.ng-centro { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.ng-etapa { font-size: .8rem; line-height: 1.2; color: var(--acento); }
+.ng-conf { height: 8px; background: rgba(255,255,255,.25); border-radius: 4px; overflow: hidden; }
+.ng-conf i { display: block; height: 100%; background: var(--acento); transition: width .5s ease; }
+.ng-globo { flex: 1 1 0; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: center; padding: 8px 14px; border-radius: 14px; line-height: 1.35; font-weight: 600; }
+.ng-globo--ellos { background: var(--papel); color: var(--tinta); border-bottom-left-radius: 2px; }
+.ng-globo--acepta { background: #d9f2e2; color: #124a2a; border-bottom-left-radius: 2px; }
+.ng-globo--rechaza { background: #f8dcd8; color: #6b1a12; border-bottom-left-radius: 2px; }
+.ng-props { display: flex; flex-direction: column; gap: 6px; }
+.ng-prop { text-align: left; min-height: calc(var(--btn) + 2px); padding: 6px 12px; border-radius: 10px; border: 2px solid rgba(255,255,255,.35); background: rgba(255,255,255,.08); color: var(--papel); font: 600 .92rem/1.25 system-ui, sans-serif; cursor: pointer; }
+.ng-prop--sel { border-color: var(--acento); background: rgba(240,179,106,.25); }
+.ng-prop:disabled { cursor: default; }
+.ng-pie { flex: none; display: flex; }
+.ng-pie .boton { flex: 1; }
+.ng-hoja { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: .92rem; line-height: 1.3; }
+.ng-hoja li { background: rgba(255,255,255,.1); border-radius: 8px; padding: 6px 10px; }
+.ng-props--resumen { background: rgba(0,0,0,.25); border-radius: 12px; padding: 8px; }
+.ng-modal__interes { margin-top: 8px; font-weight: 700; }
+@media (max-height: 520px) and (min-aspect-ratio: 1/1) {
+  /* Apaisado: situación a la izquierda, propuestas a la derecha, botón de acción abajo a todo el ancho */
+  .ng { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto minmax(0, 1fr) auto; column-gap: 14px; row-gap: 6px; }
+  .ng-izq, .ng-der { display: contents; }
+  .ng-top { grid-column: 1; grid-row: 1; }
+  .ng-globo { grid-column: 1; grid-row: 2; }
+  .ng-props { grid-column: 2; grid-row: 1 / span 2; align-content: start; gap: 4px; }
+  .ng-pie { grid-column: 1 / -1; grid-row: 3; }
+}
+
+/* Resultado por pasos */
+.res { flex: 1; min-height: 0; width: 100%; display: flex; flex-direction: column; gap: var(--u); }
+.res__cab { flex: none; display: flex; flex-direction: column; gap: 6px; font-size: 1.05rem; }
+.res__barra { height: 8px; background: rgba(255,255,255,.2); border-radius: 4px; overflow: hidden; }
+.res__barra i { display: block; height: 100%; width: 0; background: var(--acento); transition: width 1.1s ease; }
+.res__chips { flex: none; display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+.res__chip { width: clamp(34px, 5.6vh, 42px); height: clamp(34px, 5.6vh, 42px); border-radius: 50%; border: 2px solid rgba(255,255,255,.4); background: transparent; color: var(--papel); font-weight: 800; cursor: pointer; }
+.res__chip--ok { border-color: #4ad07f; color: #4ad07f; } .res__chip--mal { border-color: #ef5b4b; color: #ef5b4b; }
+.res__chip--parcial { border-color: #f0b34a; color: #f0b34a; } .res__chip--resumen { border-color: var(--acento); color: var(--acento); }
+.res__chip--actual { background: rgba(255,255,255,.2); outline: 3px solid var(--acento); outline-offset: 2px; }
+.res__tarjeta { flex: 1 1 0; min-height: 0; overflow: hidden; background: rgba(255,255,255,.1); border-left: 6px solid var(--acento); border-radius: 12px; padding: 10px 12px; }
+.res__cuerpo { display: flex; flex-direction: column; gap: 6px; font-size: .95rem; line-height: 1.4; }
+.res__cuerpo--ok { color: #eafff1; } .res__tarjeta:has(.res__cuerpo--ok) { border-left-color: #4ad07f; }
+.res__tarjeta:has(.res__cuerpo--mal) { border-left-color: #ef5b4b; } .res__tarjeta:has(.res__cuerpo--parcial) { border-left-color: #f0b34a; }
+.res__estado { font-weight: 800; font-size: 1.05rem; }
+.res__titulo { font-weight: 700; }
+.res__decision { opacity: .85; font-style: italic; }
+.res__mejor { font-weight: 700; }
+.res__consecuencia { color: #ffd0c9; }
+.res__incidentes { padding-left: 1.1rem; display: flex; flex-direction: column; gap: 4px; }
+.res__resumen { font-weight: 600; }
+.res__nav { flex: none; display: flex; gap: 8px; }
+.res__atras { flex: 0 0 56px; }
+.res__adelante { flex: 1; }
+
+/* Resultado en apaisado: datos a la izquierda, tarjeta amplia a la derecha */
+@media (max-height: 520px) and (min-aspect-ratio: 1/1) {
+  .res { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); grid-template-rows: auto minmax(0, 1fr) auto; column-gap: 14px; row-gap: 8px; }
+  .res__cab { grid-column: 1; grid-row: 1; }
+  .res__chips { grid-column: 1; grid-row: 2; align-content: start; justify-content: flex-start; }
+  .res__nav { grid-column: 1; grid-row: 3; }
+  .res__tarjeta { grid-column: 2; grid-row: 1 / span 3; }
+}
