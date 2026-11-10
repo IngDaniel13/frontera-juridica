@@ -12,7 +12,7 @@ export function pantallaInicio(cont) {
   cont.append(el('main', { class: 'pantalla pantalla--mapa' }, el('div', { class: 'menu' },
     el('div', { class: 'menu__izq' },
       cintaModoLocal(),
-      el('header', { class: 'sello' }, el('h1', {}, 'FRONTERAS', el('br'), 'JURÍDICAS'), el('p', {}, 'Derecho Internacional Privado en juego')),
+      el('header', { class: 'sello' }, el('h1', {}, 'FRONTERAS', el('br'), 'JURÍDICAS'), el('p', {}, 'Juego de Derecho Internacional Privado'), el('p', { class: 'grupo-academico' }, 'GRUPO 8')),
       el('p', { class: 'lema' }, 'Incoterms, UCP 600, arbitraje CCI y una misión comercial.')),
     el('div', { class: 'menu__der' },
       boton('JUGAR', 'primario', () => ir('solo')),
